@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama-webui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama-webui
+  template:
+    metadata:
+      labels:
+        app: ollama-webui
+    spec:
+      containers:
+      - name: ollama-webui
+        image: ghcr.io/open-webui/open-webui:main
+        ports:
+        - containerPort: 8080
+        env:
+          - name: OLLAMA_BASE_URLS
+            value: "http://ollama-service:7869"
+        volumeMounts:
+        - name: ollama-webui-data
+          mountPath: /app/backend/data
+      volumes:
+      - name: ollama-webui-data
+        hostPath:
+          # path: ./ollama/ollama-webui
+          # path: /c/SBX/cloud/Projekt/ollama/ollama-webui
+        persistentVolumeClaim:
+          claimName: ollama-webui-pvc
