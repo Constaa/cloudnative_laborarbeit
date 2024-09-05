@@ -24,13 +24,13 @@ minikube addons enable ingress-dns
 kubectl apply -k ./kubernetes
 ```
 
-## Port forward Open-Webui auf Localhost
+## IP in hosts File hinterlegen
 
 Unter _C:\Windows\System32\drivers\etc_ im File _hosts_ folgendes ergänzen:
 
 127.0.0.1 ruhig.bleiben.com
 
-Aleitung für MAC: https://timmehosting.de/hosts-datei-unter-macos-bearbeiten
+Anleitung für MAC: https://timmehosting.de/hosts-datei-unter-macos-bearbeiten
 
 ## Zugriff auf Open-Webui über Browser
 
