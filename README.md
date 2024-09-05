@@ -32,6 +32,12 @@ Unter _C:\Windows\System32\drivers\etc_ im File _hosts_ folgendes ergänzen:
 
 Anleitung für MAC: https://timmehosting.de/hosts-datei-unter-macos-bearbeiten
 
+## Tunnel für Minikube
+
+```bash
+minikube tunnel
+```
+
 ## Zugriff auf Open-Webui über Browser
 
 http://ruhig.bleiben.com
