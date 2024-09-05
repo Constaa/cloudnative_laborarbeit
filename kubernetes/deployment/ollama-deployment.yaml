@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ollama
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: ollama
@@ -26,4 +26,4 @@ spec:
           # path: ./ollama/ollama-webui
           # path: /c/SBX/cloud/Projekt/ollama/ollama-webui
         persistentVolumeClaim:
-          claimName: ollama-webui-pvc
+          claimName: ollama-pvc

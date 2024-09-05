@@ -1,9 +1,19 @@
 # Ollama chat bot
 
-## Start Minikube
+## Start Minikube ()
 
 ```bash
-minikube start
+minikube start --mount-string="C:\SBX\cloud\Projekt\ollama:/c/SBX/cloud/Projekt/ollama" --mount
+```
+
+## Ingress einrichten
+
+```bash
+minikube addons enable ingress
+```
+
+```bash
+minikube addons enable ingress-dns
 ```
 
 ## Start Ollama and Open-Webui
@@ -14,17 +24,21 @@ kubectl apply -k ./kubernetes
 
 ## Port forward Open-Webui auf Localhost
 
-```bash
-kubectl port-forward deployment/ollama-webui 8080:8080
-```
+Unter _C:\Windows\System32\drivers\etc_ im File _hosts_ folgendes ergänzen:
 
-## Minikube stoppen (kein Datenverlust)
+127.0.0.1 ruhig.bleiben.com
+
+## Zugriff auf Open-Webui über Browser
+
+http://ruhig.bleiben.com
+
+## Minikube stoppen
 
 ```bash
 minikube stop
 ```
 
-## Mnikube löschen (Datenverlust)
+## Mnikube löschen
 
 ```bash
 minikube delete

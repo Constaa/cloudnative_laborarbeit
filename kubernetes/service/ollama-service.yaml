@@ -9,4 +9,3 @@ spec:
     - protocol: TCP
       port: 7869
       targetPort: 11434
-  type: NodePort
