@@ -16,6 +16,8 @@ Automatische SKalierung durch Implementierung von Prometheus möglich. Aktuell d
 
 Aktuell Single-User Only, da noch keine Lösung für Multi-WebUI Deployment implementiert wurde. Ist was für die Zukunft.
 
+Ohne GPU-Support, weshalb die Geschwindigkeit entsprechend langsam ist. 
+
 ## Start Minikube
 
 ```bash
