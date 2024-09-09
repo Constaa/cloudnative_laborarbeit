@@ -49,7 +49,9 @@ In unserem Beispiel wurde die Domain: **ruhig.bleiben.com** gewählt.
 
 Unter _C:\Windows\System32\drivers\etc_ im File _hosts_ folgendes ergänzen:
 
+```bash
 127.0.0.1 ruhig.bleiben.com
+```
 
 Anleitung für MAC: https://timmehosting.de/hosts-datei-unter-macos-bearbeiten
 
