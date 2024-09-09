@@ -21,7 +21,8 @@ hier bild
 
 Basierend OpenWebUI und Ollama Docker. 
 Angepasst, sodass die Anwendung persistent ist auf Kubernetes läuft und load balancing (2 deployments von Ollama)
-
+Die Anwendung ist für lokale Deployments auf Enduser Geräten konzipiert und unterstützt entsprechend nur eine Single-User Funktionalität.
+Deshalb basiert die Lösung auf einem einzelnen Minikube Node, aber mehreren Pods. 
 - Persistenz:
 Das Projekt verfügt über persistente Datenspeicherung für die LLMs sowie auch Chatverläufe etc. (Ordner wird automatisch lokal erstellt).
 Somit wird auch die Datenintegrität sichergestellt wenn ein Node stirbt. 
