@@ -11,16 +11,39 @@ und die Skalierung basierend auf der Last automatisch anpassen. Zusätzlich best
 Möglichkeit, bei Bedarf über APIs auf LLMs von OpenAI zuzugreifen, was jedoch mit
 einem potenziell geringeren Maß an Datensicherheit verbunden ist.
 
+
+
+
+
+
+
+
+
+## Architektur
+
+hier bild
+
+## Entwurf
+
+Basierend OpenWebUI und Ollama Docker. 
+Angepasst, sodass die Anwendung persistent ist auf Kubernetes läuft und load balancing (2 deployments von Ollama)
+
+- Persistenz:
 Das Projekt verfügt über persistente Datenspeicherung für die LLMs sowie auch Chatverläufe etc. (Ordner wird automatisch lokal erstellt).
 Somit wird auch die Datenintegrität sichergestellt wenn ein Node stirbt. 
 
+- Load Balancing
+Load Balancing automatisch durch Kubernetes. NGINX ist externer LB? --> ERgänzung notwendig. Ingress Nginx notwendig da website und Weiterleitung zum Host
+
+- Automatische Skalierung & Monitoring
 Automatische SKalierung durch Implementierung von Prometheus möglich. Aktuell dynamisch, aber manuell. Wir starten mit 2 Deployments.
 
+- Single User
 Aktuell Single-User Only, da noch keine Lösung für Multi-WebUI Deployment implementiert wurde. Ist was für die Zukunft.
 
+- Geschwindigkeit
 Ohne GPU-Support, weshalb die Geschwindigkeit entsprechend langsam ist. 
-
-Load Balancing automatisch durch Kubernetes. NGINX ist externer LB? --> ERgänzung notwendig. Ingress Nginx notwendig da website und Weiterleitung zum Host
+- 
 
 ## Start Minikube
 
