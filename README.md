@@ -40,7 +40,12 @@ minikube addons enable ingress-dns
 kubectl apply -k ./kubernetes
 ```
 
-## IP in hosts File hinterlegen
+## Domain hinterlegen
+
+In unserem Projekt haben wir den Ansatz gewählt, dass wir eine customized Domain hinterlegen.
+Hierzu wird in der webui-ingress.yaml die Domain festegelegt. Diese muss anschließend im System ergänzt werden.
+In unserem Beispiel wurde die Domain: **ruhig.bleiben.com** gewählt.
+
 
 Unter _C:\Windows\System32\drivers\etc_ im File _hosts_ folgendes ergänzen:
 
