@@ -13,12 +13,6 @@ einem potenziell geringeren Maß an Datensicherheit verbunden ist.
 
 
 
-
-
-
-
-
-
 ## Architektur
 
 hier bild
