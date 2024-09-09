@@ -44,6 +44,7 @@ kubectl apply -k ./kubernetes
 
 In unserem Projekt haben wir den Ansatz gewählt, dass wir eine customized Domain hinterlegen.
 Hierzu wird in der webui-ingress.yaml die Domain festegelegt. Diese muss anschließend im System ergänzt werden.
+
 In unserem Beispiel wurde die Domain: **ruhig.bleiben.com** gewählt.
 
 
@@ -56,12 +57,14 @@ Unter _C:\Windows\System32\drivers\etc_ im File _hosts_ folgendes ergänzen:
 Anleitung für MAC: https://timmehosting.de/hosts-datei-unter-macos-bearbeiten
 
 ## Tunnel für Minikube
+Der Tunnel wird benötigt, da Minikube default nicht extern erreichbar ist.
 
 ```bash
 minikube tunnel
 ```
 
 ## Zugriff auf Open-Webui über Browser
+Registrieren und loslegen!
 
 http://ruhig.bleiben.com
 
