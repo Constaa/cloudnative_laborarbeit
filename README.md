@@ -11,6 +11,8 @@ und die Skalierung basierend auf der Last automatisch anpassen. Zusätzlich best
 Möglichkeit, bei Bedarf über APIs auf LLMs von OpenAI zuzugreifen, was jedoch mit
 einem potenziell geringeren Maß an Datensicherheit verbunden ist.
 
+Das Projekt verfügt über persistente Datenspeicherung für die LLMs sowie auch Chatverläufe etc. (Ordner wird automatisch lokal erstellt).
+
 ## Start Minikube
 
 ```bash
