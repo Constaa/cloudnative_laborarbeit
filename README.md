@@ -1,5 +1,16 @@
 # Ollama chat bot
 
+## Zielsetzung der Anwendung
+Die Zielsetzung dieser Anwendung ist es, ein selbst gehostetes LLM (Large Language
+Model) Chatbot-System bereitzustellen, das auf dem eigenen Rechner betrieben wird.
+Das Hosting auf der eigenen Hardware gewährleistet hohe Datensicherheit und Kontrolle
+über die sensiblen Informationen. Die Anwendung nutzt eine Microservices-Architektur
+auf Kubernetes, um Anfragen effizient zu verarbeiten, dynamisch zu skalieren und das
+System zu überwachen. Sie kann mehrere Instanzen eines Open-Source-LLMs ausführen
+und die Skalierung basierend auf der Last automatisch anpassen. Zusätzlich besteht die
+Möglichkeit, bei Bedarf über APIs auf LLMs von OpenAI zuzugreifen, was jedoch mit
+einem potenziell geringeren Maß an Datensicherheit verbunden ist.
+
 ## Start Minikube
 
 ```bash
