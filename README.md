@@ -12,6 +12,9 @@ Möglichkeit, bei Bedarf über APIs auf LLMs von OpenAI zuzugreifen, was jedoch 
 einem potenziell geringeren Maß an Datensicherheit verbunden ist.
 
 Das Projekt verfügt über persistente Datenspeicherung für die LLMs sowie auch Chatverläufe etc. (Ordner wird automatisch lokal erstellt).
+Automatische SKalierung durch Implementierung von Prometheus möglich. Aktuell dynamisch, aber manuell. Wir starten mit 2 Deployments.
+
+Aktuell Single-User Only, da noch keine Lösung für Multi-WebUI Deployment implementiert wurde. Ist was für die Zukunft.
 
 ## Start Minikube
 
