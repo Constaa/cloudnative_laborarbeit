@@ -20,7 +20,7 @@ Aktuell Single-User Only, da noch keine Lösung für Multi-WebUI Deployment impl
 
 Ohne GPU-Support, weshalb die Geschwindigkeit entsprechend langsam ist. 
 
-Load Balancing = Ingress Nginx
+Load Balancing automatisch durch Kubernetes. NGINX ist externer LB? --> ERgänzung notwendig
 
 ## Start Minikube
 
