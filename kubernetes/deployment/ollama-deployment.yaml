@@ -2,6 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ollama
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
+    prometheus.io/port: "8080"
 spec:
   replicas: 2
   selector:
@@ -20,6 +24,9 @@ spec:
         volumeMounts:
         - name: ollama-data
           mountPath: /root/.ollama
+        resources:
+          limits:
+            nvidia.com/gpu: "1"
       volumes:
       - name: ollama-data
         hostPath:

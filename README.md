@@ -1,6 +1,7 @@
 # Ollama chat bot
 
 ## Zielsetzung der Anwendung
+
 Die Zielsetzung dieser Anwendung ist es, ein selbst gehostetes LLM (Large Language
 Model) Chatbot-System bereitzustellen, das auf dem eigenen Rechner betrieben wird.
 Das Hosting auf der eigenen Hardware gewährleistet hohe Datensicherheit und Kontrolle
@@ -11,52 +12,65 @@ und die Skalierung basierend auf der Last automatisch anpassen. Zusätzlich best
 Möglichkeit, bei Bedarf über APIs auf LLMs von OpenAI zuzugreifen, was jedoch mit
 einem potenziell geringeren Maß an Datensicherheit verbunden ist.
 
-
-
 ## Architektur
 
 hier bild
 
 ## Entwurf
 
-Basierend OpenWebUI und Ollama Docker. 
+Basierend OpenWebUI und Ollama Docker.
 Angepasst, sodass die Anwendung persistent ist auf Kubernetes läuft und load balancing (2 deployments von Ollama)
 Die Anwendung ist für lokale Deployments auf Enduser Geräten konzipiert und unterstützt entsprechend nur eine Single-User Funktionalität.
-Deshalb basiert die Lösung auf einem einzelnen Minikube Node, aber mehreren Pods. 
+Deshalb basiert die Lösung auf einem einzelnen Minikube Node, aber mehreren Pods.
+
 - Persistenz:
-Das Projekt verfügt über persistente Datenspeicherung für die LLMs sowie auch Chatverläufe etc. (Ordner wird automatisch lokal erstellt).
-Somit wird auch die Datenintegrität sichergestellt wenn ein Node stirbt. 
+  Das Projekt verfügt über persistente Datenspeicherung für die LLMs sowie auch Chatverläufe etc. (Ordner wird automatisch lokal erstellt).
+  Somit wird auch die Datenintegrität sichergestellt wenn ein Node stirbt.
 
 - Load Balancing
-Load Balancing automatisch durch Kubernetes. NGINX ist externer LB? --> ERgänzung notwendig. Ingress Nginx notwendig da website und Weiterleitung zum Host
+  Load Balancing automatisch durch Kubernetes. NGINX ist externer LB? --> ERgänzung notwendig. Ingress Nginx notwendig da website und Weiterleitung zum Host
 
 - Automatische Skalierung & Monitoring
-Automatische SKalierung durch Implementierung von Prometheus möglich. Aktuell dynamisch, aber manuell. Wir starten mit 2 Deployments.
+  Automatische SKalierung durch Implementierung von Prometheus möglich. Aktuell dynamisch, aber manuell. Wir starten mit 2 Deployments.
 
 - Single User
-Aktuell Single-User Only, da noch keine Lösung für Multi-WebUI Deployment implementiert wurde. Ist was für die Zukunft.
+  Aktuell Single-User Only, da noch keine Lösung für Multi-WebUI Deployment implementiert wurde. Ist was für die Zukunft.
 
 - Geschwindigkeit
-Ohne GPU-Support, weshalb die Geschwindigkeit entsprechend langsam ist. 
-- 
+  Ohne GPU-Support, weshalb die Geschwindigkeit entsprechend langsam ist.
+-
 
-## Start Minikube
-
-```bash
-minikube start --mount-string="<your_project_path>\ollama:/c/SBX/cloud/Projekt/ollama" --mount
-```
-
-Beispiel für <your_project_path> bei mir: C:\SBX\cloud\Projekt
-
-## Ingress einrichten
+## Start Minikube ()
 
 ```bash
-minikube addons enable ingress
+minikube start --mount-string="C:\SBX\cloud\Projekt\ollama:/c/SBX/cloud/Projekt/ollama" --mount --gpus=all
 ```
 
+## Install Prometheus and Grafana
+
+### Add helm repos
+
 ```bash
-minikube addons enable ingress-dns
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
 ```
+
+### Update helm repos
+
+```bash
+helm repo update
+```
+
+### Install
+
+```bash
+helm install prometheus prometheus-community/prometheus
+helm install grafana --set adminPassword=admin grafana/grafana
+```
+
+### Anleitung aus der Vorlesung:
+
+https://farberg.de/talks/cloud/?03d%20-%20Monitoring%20and%20Scalability.md#/5
 
 ## Start Ollama and Open-Webui
 
@@ -64,33 +78,29 @@ minikube addons enable ingress-dns
 kubectl apply -k ./kubernetes
 ```
 
-## Domain hinterlegen
-
-In unserem Projekt haben wir den Ansatz gewählt, dass wir eine customized Domain hinterlegen.
-Hierzu wird in der webui-ingress.yaml die Domain festegelegt. Diese muss anschließend im System ergänzt werden.
-
-In unserem Beispiel wurde die Domain: **ruhig.bleiben.com** gewählt.
-
-
-Unter _C:\Windows\System32\drivers\etc_ im File _hosts_ folgendes ergänzen:
+## Port forward
 
 ```bash
-127.0.0.1 ruhig.bleiben.com
+kubectl port-forward svc/prometheus-server 8888:80
+kubectl port-forward svc/grafana 9999:80
+kubectl port-forward svc/webui-service 7777:8080
 ```
 
-Anleitung für MAC: https://timmehosting.de/hosts-datei-unter-macos-bearbeiten
+### Open Prometheus
 
-## Tunnel für Minikube
-Der Tunnel wird benötigt, da Minikube default nicht extern erreichbar ist.
+http://localhost:8888
 
-```bash
-minikube tunnel
-```
+### Open Grafana
 
-## Zugriff auf Open-Webui über Browser
-Registrieren und loslegen!
+http://localhost:9999
 
-http://ruhig.bleiben.com
+Login:
+username: admin
+password: admin
+
+### Open Webui
+
+http://localhost:7777
 
 ## Minikube stoppen
 
@@ -103,3 +113,25 @@ minikube stop
 ```bash
 minikube delete
 ```
+
+# Veraltet vielleicht für später
+
+## Ingress einrichten
+
+```bash
+minikube addons enable ingress
+```
+
+```bash
+minikube addons enable ingress-dns
+```
+
+## Port forward Open-Webui auf Localhost
+
+Unter _C:\Windows\System32\drivers\etc_ im File _hosts_ folgendes ergänzen:
+
+127.0.0.1 ruhig.bleiben.com
+
+## Zugriff auf Open-Webui über Browser
+
+http://ruhig.bleiben.com
