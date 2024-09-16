@@ -43,7 +43,7 @@ Deshalb basiert die Lösung auf einem einzelnen Minikube Node, aber mehreren Pod
 ## Start Minikube ()
 
 ```bash
-minikube start --mount-string="C:\SBX\cloud\Projekt\ollama:/c/SBX/cloud/Projekt/ollama" --mount --gpus=all
+minikube start --mount-string="C:\SBX\cloud\Projekt\ollama:/c/SBX/cloud/Projekt/ollama" --mount
 ```
 
 ## Install Prometheus and Grafana
@@ -64,7 +64,7 @@ helm repo update
 ### Install
 
 ```bash
-helm install prometheus prometheus-community/prometheus --set server.global.scrape_interval=5s
+helm install prometheus prometheus-community/prometheus
 helm install grafana --set adminPassword=admin grafana/grafana
 ```
 
@@ -105,7 +105,10 @@ username: admin
 password: admin
 
 CPU visualization:
-sum(rate(container*cpu_usage_seconds_total{pod=~"ollama-.*"}[5m])) by (pod) / sum(kube*pod_container_resource_limits{pod=~"ollama-.*"}) by (pod) \* 100
+
+```bash
+sum(rate(container_cpu_usage_seconds_total{pod=~"ollama-.*"}[5m])) by (pod) / sum(kube_pod_container_resource_limits{pod=~"ollama-.*"}) by (pod) * 100
+```
 
 ### Open Webui
 
