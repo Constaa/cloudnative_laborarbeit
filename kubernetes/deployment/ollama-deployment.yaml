@@ -7,7 +7,7 @@ metadata:
     prometheus.io/path: "/metrics"
     prometheus.io/port: "8080"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ollama
@@ -25,8 +25,13 @@ spec:
         - name: ollama-data
           mountPath: /root/.ollama
         resources:
+          requests:
+            cpu: "500m"  # Minimum CPU required
           limits:
-            nvidia.com/gpu: "1"
+            cpu: "1"     # Maximum CPU allowed
+        # resources:
+        #   limits:
+        #     nvidia.com/gpu: "1"
       volumes:
       - name: ollama-data
         hostPath:

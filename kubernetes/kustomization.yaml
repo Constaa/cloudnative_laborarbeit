@@ -13,6 +13,7 @@ resources:
 - deployment/webui-deployment.yaml
 - service/ollama-service.yaml
 - service/webui-service.yaml
+- HPA/hpa.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

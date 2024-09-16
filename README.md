@@ -64,13 +64,19 @@ helm repo update
 ### Install
 
 ```bash
-helm install prometheus prometheus-community/prometheus
+helm install prometheus prometheus-community/prometheus --set server.global.scrape_interval=5s
 helm install grafana --set adminPassword=admin grafana/grafana
 ```
 
 ### Anleitung aus der Vorlesung:
 
 https://farberg.de/talks/cloud/?03d%20-%20Monitoring%20and%20Scalability.md#/5
+
+## Enable Metrics Server
+
+```bash
+minikube addons enable metrics-server
+```
 
 ## Start Ollama and Open-Webui
 
@@ -97,6 +103,9 @@ http://localhost:9999
 Login:
 username: admin
 password: admin
+
+CPU visualization:
+sum(rate(container*cpu_usage_seconds_total{pod=~"ollama-.*"}[5m])) by (pod) / sum(kube*pod_container_resource_limits{pod=~"ollama-.*"}) by (pod) \* 100
 
 ### Open Webui
 
