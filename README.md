@@ -110,7 +110,11 @@ password: admin
 
 ### Verbindung Grafana mit Prometheus
 Nun muss Prometeus als Datenquelle in Grafana hinterlegt werden. Hierzu über Connections, Data Sources und Prometheus hinzufügen.
-Hierzu den Link von Prometheus (s. oben) einfügen. Sonst alles auf default belasssen (zb no authentification).
+Hierzu den Link von Prometheus 
+
+http://prometheus-server
+
+einfügen. Sonst alles auf default belasssen (zb no authentification).
 
 CPU visualization:
 
