@@ -126,6 +126,17 @@ sum(rate(container_cpu_usage_seconds_total{pod=~"ollama-.*"}[5m])) by (pod) / su
 
 http://localhost:7777
 
+Registrieren und anmelden.
+
+### Download von Modell
+
+Links unten auf Profil --> Einstellungen --> Admin --> Modelle
+Ein Modell aussuchen (ggf. klein. da Performance limitiert) zb: https://ollama.com/library (46MB)
+Name kopieren
+Einfügen, downloaden
+
+und loslegen
+
 ## Minikube stoppen
 
 ```bash
