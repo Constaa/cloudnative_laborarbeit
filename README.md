@@ -88,6 +88,7 @@ kubectl apply -k ./kubernetes
 ```
 
 ## Port forward
+Jeden Port-Forward in einem neuen Terminal starten, sodass alle parallel laufen.
 
 ```bash
 kubectl port-forward svc/prometheus-server 8888:80
