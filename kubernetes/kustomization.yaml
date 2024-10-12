@@ -22,12 +22,3 @@ resources:
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
-
-helm install grafana grafana/grafana \
- --set persistence.enabled=true \
- --set persistence.existingClaim="grafana-pvc" \
-
- helm install prometheus prometheus-community/prometheus \
-  --set server.persistentVolume.enabled=true \
-  --set server.persistentVolume.existingClaim=prometheus-pvc \
