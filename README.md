@@ -81,14 +81,6 @@ helm install prometheus prometheus-community/prometheus \
 ### Install
 
 ```bash
-helm install grafana grafana/grafana \
-  --set adminPassword=admin \
-  --set persistence.enabled=true \
-  --set persistence.existingClaim=grafana-pvc
-```
-
-
-```bash
 helm install prometheus prometheus-community/prometheus
 helm install grafana --set adminPassword=admin grafana/grafana
 ```
