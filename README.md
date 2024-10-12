@@ -31,7 +31,7 @@ Deshalb basiert die Lösung auf einem einzelnen Minikube Node, aber mehreren Pod
   Load Balancing automatisch durch Kubernetes. NGINX ist externer LB? --> ERgänzung notwendig. Ingress Nginx notwendig da website und Weiterleitung zum Host
 
 - Automatische Skalierung & Monitoring
-  Automatische SKalierung durch Implementierung von Prometheus möglich. Aktuell dynamisch, aber manuell. Wir starten mit 2 Deployments.
+  Automatische SKalierung durch Implementierung von Prometheus möglich. Aktuell dynamisch, aber manuell. Wir starten mit 2 Deployments von Ollama um eine schnelle Skalierung zu ermöglichen. Automatische Skalierung (HPA) basiert auf CPU-Auslastung.
 
 - Single User
   Aktuell Single-User Only, da noch keine Lösung für Multi-WebUI Deployment implementiert wurde. Ist was für die Zukunft.
