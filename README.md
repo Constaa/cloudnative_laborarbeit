@@ -64,6 +64,20 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 ```
 
+### Install für PV -- Jonas sein Mist
+
+```bash
+helm install grafana grafana/grafana \
+ --set persistence.enabled=true \
+ --set persistence.existingClaim="grafana-pvc" \
+```
+
+```bash
+helm install prometheus prometheus-community/prometheus \
+  --set server.persistentVolume.enabled=true \
+  --set server.persistentVolume.existingClaim=prometheus-pvc \
+```
+
 ### Install
 
 ```bash
