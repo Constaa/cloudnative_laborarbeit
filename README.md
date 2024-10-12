@@ -158,19 +158,6 @@ http://localhost:7777
 
 Registrieren und anmelden.
 
-
-## Minikube stoppen
-
-```bash
-minikube stop
-```
-
-## Mnikube löschen
-
-```bash
-minikube delete
-```
-
 # Installation eine Models
 
 Dieses Projekt beinhaltet keine installierten Modelle. Deshalb müssen diese initial manuell installiert werden. Die Modelle werden persistent unter dem Pfad ./ollama/ollama gespeichert, sodass sie nur ein Mal installiert werden müssen.
@@ -184,3 +171,18 @@ Dort muss wie in den Bildern beschrieben ein Model Ollama.com herausgesucht werd
 ![Image 2](./images/install_model/image2.png)
 ![Image 3](./images/install_model/image3.png)
 ![Image 4](./images/install_model/image4.png)
+
+
+## Minikube stoppen
+
+```bash
+minikube stop
+```
+
+## Minikube löschen
+
+```bash
+minikube delete
+```
+
+
