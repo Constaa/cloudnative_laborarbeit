@@ -14,7 +14,7 @@ einem potenziell geringeren Maß an Datensicherheit verbunden ist.
 
 ## Architektur
 
-hier bild
+![Image 0](./images/Architektur.drawio.svg)
 
 ## Entwurf
 
@@ -43,10 +43,9 @@ Deshalb basiert die Lösung auf einem einzelnen Minikube Node, aber mehreren Pod
 ## Start Minikube ()
 
 Lokal-Pfad : Zielpfad
-minikube start --mount-string="DEIN_PFAD:/c/SBX/cloud/Projekt/ollama" --mount
 
 ```bash
-minikube start --mount-string="C:\SBX\cloud\Projekt\ollama:/c/SBX/cloud/Projekt/ollama" --mount
+minikube start --mount-string="<Projekt_Pfad>:/c/SBX/cloud/Projekt/ollama" --mount
 ```
 
 ## Install Prometheus and Grafana
