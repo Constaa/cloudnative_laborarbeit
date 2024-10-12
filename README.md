@@ -1,4 +1,4 @@
-# Ollama chat bot
+# Laborarbeit - Self-hosted LLM Chatbot
 
 ## Zielsetzung der Anwendung
 
