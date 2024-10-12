@@ -129,7 +129,7 @@ Hierzu den Link von Prometheus
 
 http://prometheus-server
 
-einfügen. Sonst alles auf default belasssen (zb no authentification).
+einfügen. Sonst alles auf default belasssen.
 
 CPU visualization:
 
