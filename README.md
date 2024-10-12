@@ -132,6 +132,20 @@ http://prometheus-server
 
 einfügen. Sonst alles auf default belasssen.
 
+![Image 1](./images/setup_grafana_dashboards/grafana1)
+![Image 2](./images/setup_grafana_dashboards/grafana2)
+![Image 3](./images/setup_grafana_dashboards/grafana3)
+
+### Einrichten des Dashboard auf Grafana
+
+1. Dashboard erstellen über new dashboard
+2. Import Dashboard
+3. Dashboard als .json (im Projektordner grafana-dashboaords zu finden)
+
+![Image 1](./images/setup_grafana_dashboards/grafana4)
+![Image 2](./images/setup_grafana_dashboards/grafana5)
+![Image 3](./images/setup_grafana_dashboards/grafana6)
+
 CPU visualization:
 
 ```bash
@@ -144,14 +158,6 @@ http://localhost:7777
 
 Registrieren und anmelden.
 
-### Download von Modell
-
-Links unten auf Profil --> Einstellungen --> Admin --> Modelle
-Ein Modell aussuchen (ggf. klein. da Performance limitiert) zb: https://ollama.com/library (46MB)
-Name kopieren
-Einfügen, downloaden
-
-und loslegen
 
 ## Minikube stoppen
 
