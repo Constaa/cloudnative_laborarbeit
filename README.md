@@ -67,6 +67,17 @@ helm repo add grafana https://grafana.github.io/helm-charts
 ```bash
 helm repo update
 ```
+## Enable Metrics Server
+
+```bash
+minikube addons enable metrics-server
+```
+
+## Start Ollama and Open-Webui
+
+```bash
+kubectl apply -k ./kubernetes
+```
 
 ### Install für PV -- Jonas sein Mist
 
@@ -94,17 +105,6 @@ helm install grafana --set adminPassword=admin grafana/grafana
 
 https://farberg.de/talks/cloud/?03d%20-%20Monitoring%20and%20Scalability.md#/5
 
-## Enable Metrics Server
-
-```bash
-minikube addons enable metrics-server
-```
-
-## Start Ollama and Open-Webui
-
-```bash
-kubectl apply -k ./kubernetes
-```
 
 ## Port forward
 
