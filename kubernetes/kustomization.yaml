@@ -7,13 +7,27 @@ resources:
 # - ingress/webui-ingress.yaml
 - pv/ollama-pv.yaml
 - pv/webui-pv.yaml
+- pv/grafana-pv.yaml
+- pv/prometheus-pv.yaml
 - pvc/ollama-pvc.yaml
 - pvc/webui-pvc.yaml
+- pvc/grafana-pvc.yaml
+- pvc/prometheus-pvc.yaml
 - deployment/ollama-deployment.yaml
 - deployment/webui-deployment.yaml
 - service/ollama-service.yaml
 - service/webui-service.yaml
 - HPA/hpa.yaml
+#- grafana/grafana-dashboards-config.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
+
+helm install grafana grafana/grafana \
+ --set persistence.enabled=true \
+ --set persistence.existingClaim="grafana-pvc" \
+
+ helm install prometheus prometheus-community/prometheus \
+  --set server.persistentVolume.enabled=true \
+  --set server.persistentVolume.existingClaim=prometheus-pvc \
