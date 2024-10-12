@@ -132,9 +132,9 @@ http://prometheus-server
 
 einfügen. Sonst alles auf default belasssen.
 
-![Image 1](./images/setup_grafana_dashboards/grafana1)
-![Image 2](./images/setup_grafana_dashboards/grafana2)
-![Image 3](./images/setup_grafana_dashboards/grafana3)
+![Image 1](./images/setup_grafana_dashboards/grafana1.png)
+![Image 2](./images/setup_grafana_dashboards/grafana2.png)
+![Image 3](./images/setup_grafana_dashboards/grafana3.png)
 
 ### Einrichten des Dashboard auf Grafana
 
@@ -142,9 +142,9 @@ einfügen. Sonst alles auf default belasssen.
 2. Import Dashboard
 3. Dashboard als .json (im Projektordner grafana-dashboaords zu finden)
 
-![Image 1](./images/setup_grafana_dashboards/grafana4)
-![Image 2](./images/setup_grafana_dashboards/grafana5)
-![Image 3](./images/setup_grafana_dashboards/grafana6)
+![Image 1](./images/setup_grafana_dashboards/grafana4.png)
+![Image 2](./images/setup_grafana_dashboards/grafana5.png)
+![Image 3](./images/setup_grafana_dashboards/grafana6.png)
 
 CPU visualization:
 
