@@ -102,6 +102,7 @@ kubectl apply -k ./kubernetes
 ```
 
 ## Port forward
+
 Jeden Port-Forward in einem neuen Terminal starten, sodass alle parallel laufen.
 
 ```bash
@@ -123,8 +124,9 @@ username: admin
 password: admin
 
 ### Verbindung Grafana mit Prometheus
+
 Nun muss Prometeus als Datenquelle in Grafana hinterlegt werden. Hierzu über Connections, Data Sources und Prometheus hinzufügen.
-Hierzu den Link von Prometheus 
+Hierzu den Link von Prometheus
 
 http://prometheus-server
 
@@ -163,24 +165,16 @@ minikube stop
 minikube delete
 ```
 
-# Veraltet vielleicht für später
+# Installation eine Models
 
-## Ingress einrichten
+Dieses Projekt beinhaltet keine installierten Modelle. Deshalb müssen diese initial manuell installiert werden. Die Modelle werden persistent unter dem Pfad ./ollama/ollama gespeichert, sodass sie nur ein Mal installiert werden müssen.
 
-```bash
-minikube addons enable ingress
-```
+Dazu muss wie folgt navigiert werden:  
+Settings -> Admin Setting -> Models
 
-```bash
-minikube addons enable ingress-dns
-```
+Dort muss wie in den Bildern beschrieben ein Model Ollama.com herausgesucht werden.
 
-## Port forward Open-Webui auf Localhost
-
-Unter _C:\Windows\System32\drivers\etc_ im File _hosts_ folgendes ergänzen:
-
-127.0.0.1 ruhig.bleiben.com
-
-## Zugriff auf Open-Webui über Browser
-
-http://ruhig.bleiben.com
+![Image 1](./images/install_model/image1.png)
+![Image 2](./images/install_model/image2.png)
+![Image 3](./images/install_model/image3.png)
+![Image 4](./images/install_model/image4.png)
