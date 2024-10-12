@@ -66,7 +66,7 @@ helm repo update
 ### Install für PV -- Jonas sein Mist
 
 ```bash
-helm upgrade grafana grafana/grafana \
+helm install grafana grafana/grafana \
  --set persistence.enabled=true \
  --set persistence.existingClaim="grafana-pvc" \
  --set adminPassword=admin
@@ -132,7 +132,7 @@ http://prometheus-server
 
 einfügen. Sonst alles auf default belasssen.
 
-![Image 1]([https://github.com/Constaa/cloudnative_laborarbeit/blob/main/images/setup_grafana_dashboards/grafana1.png)
+![Image 1](./images/setup_grafana_dashboards/grafana1)
 ![Image 2](./images/setup_grafana_dashboards/grafana2)
 ![Image 3](./images/setup_grafana_dashboards/grafana3)
 
