@@ -132,7 +132,7 @@ http://prometheus-server
 
 einfügen. Sonst alles auf default belasssen.
 
-![Image 1](./images/setup_grafana_dashboards/grafana1)
+![Image 1]([https://github.com/Constaa/cloudnative_laborarbeit/blob/main/images/setup_grafana_dashboards/grafana1.png)
 ![Image 2](./images/setup_grafana_dashboards/grafana2)
 ![Image 3](./images/setup_grafana_dashboards/grafana3)
 
