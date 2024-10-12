@@ -38,7 +38,12 @@ Deshalb basiert die Lösung auf einem einzelnen Minikube Node, aber mehreren Pod
 
 - Geschwindigkeit
   Ohne GPU-Support, weshalb die Geschwindigkeit entsprechend langsam ist.
--
+
+
+## Ausblick
+
+Sensibilisieren vom Monitoring - aktuell 3 Minuten Verzögerung.
+
 
 ## Start Minikube ()
 
