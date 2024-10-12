@@ -66,9 +66,10 @@ helm repo update
 ### Install für PV -- Jonas sein Mist
 
 ```bash
-helm install grafana grafana/grafana \
+helm upgrade grafana grafana/grafana \
  --set persistence.enabled=true \
  --set persistence.existingClaim="grafana-pvc" \
+ --set adminPassword=admin
 ```
 
 ```bash
