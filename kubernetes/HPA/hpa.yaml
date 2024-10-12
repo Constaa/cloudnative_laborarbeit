@@ -16,13 +16,13 @@ spec:
       policies:
       - type: Percent
         value: 100    # Erlaubt schnelles Hochskalieren, wenn nötig (100% Wachstum)
-        periodSeconds: 15  # Innerhalb von 15 Sekunden
+        periodSeconds: 15 
     scaleDown:
       stabilizationWindowSeconds: 60  # Wartet 60 Sekunden, bevor es herunterskaliert
       policies:
       - type: Percent
         value: 50     # Reduziert um bis zu 50% auf einmal
-        periodSeconds: 60  # Über ein 60-Sekunden-Fenster
+        periodSeconds: 60  
   metrics:
   - type: Resource
     resource:
