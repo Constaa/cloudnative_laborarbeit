@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -37,7 +37,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "",
+            "axisLabel": "in %",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -602,7 +602,7 @@
       "datasource": {
         "default": true,
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "ae0qpdb6r7sowc"
       },
       "fieldConfig": {
         "defaults": {
@@ -655,10 +655,34 @@
                 "value": 80
               }
             ]
-          },
-          "unit": "deckbytes"
+          }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "{beta_kubernetes_io_arch=\"amd64\", beta_kubernetes_io_os=\"linux\", id=\"/\", instance=\"minikube\", interface=\"eth0\", job=\"kubernetes-nodes-cadvisor\", kubernetes_io_arch=\"amd64\", kubernetes_io_hostname=\"minikube\", kubernetes_io_os=\"linux\", minikube_k8s_io_commit=\"5883c09216182566a63dff4c326a6fc9ed2982ff\", minikube_k8s_io_name=\"minikube\", minikube_k8s_io_primary=\"true\", minikube_k8s_io_updated_at=\"2024_10_13T12_10_05_0700\", minikube_k8s_io_version=\"v1.33.1\"}"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -666,13 +690,13 @@
         "x": 0,
         "y": 12
       },
-      "id": 3,
+      "id": 13,
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "mode": "single",
@@ -686,14 +710,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(container_memory_usage_bytes{namespace=\"default\", pod=~\"ollama-.*\"}) by (pod)\r\n",
+          "expr": "rate(container_network_receive_bytes_total{interface=\"eth0\"}[2m]) + rate(container_network_transmit_bytes_total{interface=\"eth0\"}[2m])\r\n",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Speicher Auslastung ",
+      "title": "Netzwerktraffic eth0",
       "type": "timeseries"
     },
     {
@@ -879,103 +903,6 @@
       ],
       "title": "RAM Auslastung",
       "type": "gauge"
-    },
-    {
-      "datasource": {
-        "default": true,
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 20
-      },
-      "id": 13,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "rate(container_network_receive_bytes_total{}[2m]) + rate(container_network_transmit_bytes_total{}[2m])\r\n",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Netzwerktraffic ",
-      "type": "timeseries"
     }
   ],
   "refresh": "auto",
@@ -985,13 +912,13 @@
     "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "New dashboard2",
   "uid": "de0lmfbosu1ogb",
-  "version": 5,
+  "version": 2,
   "weekStart": ""
 }
