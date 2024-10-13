@@ -29,16 +29,19 @@ Dieses Projekt basiert auf **OpenWebUI** und einer Docker-Implementierung von **
 ## Features
 
 ### Persistenz
+
 - **Persistente Datenspeicherung** für die LLMs (Large Language Models) und **Chatverläufe** sowie auch für die **Dashboards** von Grafana
 - Ein Ordner wird lokal automatisch erstellt, um die Integrität der Daten sicherzustellen, auch im Falle eines Node-Ausfalls.
 - Dies garantiert, dass keine Daten verloren gehen und die Anwendung konsistent bleibt.
 - Eine persistente Datenspeicherung der Prometheus Daten ist noch nicht implementiert, ist allerdings für zukünftige Releases in der Pipeline.
 
 ### Load Balancing
+
 - Kubernetes übernimmt das **automatische Load-Balancing** der Pods.
 - Zur Unterstützung der WebUI und der Weiterleitung von Anfragen zum Host ist ein **NGINX-Ingress-Controller** als externer Load Balancer erforderlich.
 
 ### Automatische Skalierung & Monitoring
+
 - Die Anwendung unterstützt nun eine **automatische Skalierung** mithilfe eines **Horizontal Pod Autoscalers (HPA)**.
 - Die HPA-Konfiguration basiert auf der **CPU-Auslastung** der Pods und passt die Anzahl der Ollama-Pods dynamisch an.
 - Skalierung erfolgt zwischen **2** und **10 Pods**, um sowohl Redundanz als auch optimale Ressourcennutzung sicherzustellen.
@@ -47,10 +50,12 @@ Dieses Projekt basiert auf **OpenWebUI** und einer Docker-Implementierung von **
 - **Prometheus**-Integration erlaubt das Monitoring und kann für dynamische Skalierung konfiguriert werden. Über **Grafana** werden die Daten in Dashboards visualisiert.
 
 ### Single-User-Support
+
 - Derzeit wird nur **Single-User-Funktionalität** unterstützt, da eine Multi-User-Lösung (mehrere WebUI-Instanzen) noch nicht implementiert wurde.
 - Diese Funktionalität ist für zukünftige Releases geplant.
 
 ### Geschwindigkeit
+
 - Da die Anwendung ohne **GPU-Support** betrieben wird, ist die **Ausführungszeit langsamer** im Vergleich zu GPU-basierten Systemen.
 
 # Installation
@@ -60,7 +65,7 @@ Dieses Projekt basiert auf **OpenWebUI** und einer Docker-Implementierung von **
 Um das Projekt lokal auszuführen, soll **Minikube** gestartet und der Projektpfad gemountet werden:
 
 ```bash
-minikube start --mount-string="<Projekt_Pfad>:/c/SBX/cloud/Projekt/ollama" --mount
+minikube start --mount-string="<Projekt_Pfad>\ollama:/c/SBX/cloud/Projekt/ollama" --mount
 ```
 
 ## Installation von Prometheus und Grafana
@@ -73,13 +78,17 @@ helm repo add grafana https://grafana.github.io/helm-charts
 ```
 
 ### Helm-Repositories aktualisieren
+
 Um die neuesten Charts zu erhalten, sollten die Helm-Repositories aktualisiert werden:
+
 ```bash
 helm repo update
 ```
 
 ## Metrics Server aktivieren
+
 Der Metrics Server in Minikube kann mit folgendem Befehl aktiviert werden:
+
 ```bash
 minikube addons enable metrics-server
 ```
@@ -89,7 +98,9 @@ minikube addons enable metrics-server
 ```bash
 kubectl apply -k ./kubernetes
 ```
+
 ## Grafana mit persistentem Volume installieren
+
 Grafana kann mit einem persistenten Volume installiert werden:
 
 ```bash
@@ -106,20 +117,20 @@ helm install prometheus prometheus-community/prometheus
 ```
 
 ### Alternative Installation
+
 Alternativ kann Grafana auch ohne persistent Volume installiert werden:
 
 ```bash
 helm install grafana --set adminPassword=admin grafana/grafana
 ```
 
-
-
 ### Weitere Anleitungen:
+
 Für weitere Informationen und Anleitungen können die Vorlesungsnotizen konsultiert werden:
 https://farberg.de/talks/cloud/?03d%20-%20Monitoring%20and%20Scalability.md#/5
 
-
 ## Port Forwarding
+
 Die folgenden Befehle sollten in separaten Terminalfenstern ausgeführt werden, um den Zugriff auf die verschiedenen Dienste zu ermöglichen:
 
 ```bash
@@ -187,11 +198,6 @@ Prometheus sollte als Datenquelle in Grafana hinzugefügt werden:
 ![Image 2](./images/setup_grafana_dashboards/grafana5.png)
 ![Image 3](./images/setup_grafana_dashboards/grafana6.png)
 
-
-
-
-
-
 ## Minikube stoppen
 
 ```bash
@@ -203,5 +209,3 @@ minikube stop
 ```bash
 minikube delete
 ```
-
-
