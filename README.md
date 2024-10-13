@@ -48,42 +48,42 @@ Dieses Projekt basiert auf **OpenWebUI** und einer Docker-Implementierung von **
 
 # Installation
 
+## Minikube starten
 
-## Start Minikube ()
-
-Lokal-Pfad : Zielpfad
+Um das Projekt lokal auszuführen, soll **Minikube** gestartet und der Projektpfad gemountet werden:
 
 ```bash
 minikube start --mount-string="<Projekt_Pfad>:/c/SBX/cloud/Projekt/ollama" --mount
 ```
 
-## Install Prometheus and Grafana
+## Installation von Prometheus und Grafana
 
-### Add helm repos
+### Helm-Repositories hinzufügen
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
 
-### Update helm repos
-
+### Helm-Repositories aktualisieren
+Um die neuesten Charts zu erhalten, sollten die Helm-Repositories aktualisiert werden:
 ```bash
 helm repo update
 ```
-## Enable Metrics Server
 
+## Metrics Server aktivieren
+Der Metrics Server in Minikube kann mit folgendem Befehl aktiviert werden:
 ```bash
 minikube addons enable metrics-server
 ```
 
-## Start Ollama and Open-Webui
+## Ollama und Open-WebUI starten
 
 ```bash
 kubectl apply -k ./kubernetes
 ```
-
-### Install für PV -- Jonas sein Mist
+## Grafana mit persistentem Volume installieren
+Grafana kann mit einem persistenten Volume installiert werden:
 
 ```bash
 helm install grafana grafana/grafana \
@@ -92,27 +92,28 @@ helm install grafana grafana/grafana \
  --set adminPassword=admin
 ```
 
-```bash
-helm install prometheus prometheus-community/prometheus \
-  --set server.persistentVolume.enabled=true \
-  --set server.persistentVolume.existingClaim=prometheus-pvc \
-```
-
-### Install
+## Prometheus installieren
 
 ```bash
 helm install prometheus prometheus-community/prometheus
+```
+
+### Alternative Installation
+Alternativ kann Grafana auch ohne persistent Volume installiert werden:
+
+```bash
 helm install grafana --set adminPassword=admin grafana/grafana
 ```
 
-### Anleitung aus der Vorlesung:
 
+
+### Weitere Anleitungen:
+Für weitere Informationen und Anleitungen können die Vorlesungsnotizen konsultiert werden:
 https://farberg.de/talks/cloud/?03d%20-%20Monitoring%20and%20Scalability.md#/5
 
 
-## Port forward
-
-Jeden Port-Forward in einem neuen Terminal starten, sodass alle parallel laufen.
+## Port Forwarding
+Die folgenden Befehle sollten in separaten Terminalfenstern ausgeführt werden, um den Zugriff auf die verschiedenen Dienste zu ermöglichen:
 
 ```bash
 kubectl port-forward svc/prometheus-server 8888:80
@@ -120,11 +121,13 @@ kubectl port-forward svc/grafana 9999:80
 kubectl port-forward svc/webui-service 7777:8080
 ```
 
-### Open Prometheus
+# Zugriff auf die Services
+
+### Prometheus
 
 http://localhost:8888
 
-### Open Grafana
+### Grafana
 
 http://localhost:9999
 
@@ -132,42 +135,13 @@ Login:
 username: admin
 password: admin
 
-### Verbindung Grafana mit Prometheus
-
-Nun muss Prometeus als Datenquelle in Grafana hinterlegt werden. Hierzu über Connections, Data Sources und Prometheus hinzufügen.
-Hierzu den Link von Prometheus
-
-http://prometheus-server
-
-einfügen. Sonst alles auf default belasssen.
-
-![Image 1](./images/setup_grafana_dashboards/grafana1.png)
-![Image 2](./images/setup_grafana_dashboards/grafana2.png)
-![Image 3](./images/setup_grafana_dashboards/grafana3.png)
-
-### Einrichten des Dashboard auf Grafana
-
-1. Dashboard erstellen über new dashboard
-2. Import Dashboard
-3. Dashboard als .json (im Projektordner grafana-dashboaords zu finden)
-
-![Image 1](./images/setup_grafana_dashboards/grafana4.png)
-![Image 2](./images/setup_grafana_dashboards/grafana5.png)
-![Image 3](./images/setup_grafana_dashboards/grafana6.png)
-
-CPU visualization:
-
-```bash
-sum(rate(container_cpu_usage_seconds_total{pod=~"ollama-.*"}[5m])) by (pod) / sum(kube_pod_container_resource_limits{pod=~"ollama-.*"}) by (pod) * 100
-```
-
 ### Open Webui
 
 http://localhost:7777
 
-Registrieren und anmelden.
+Hierbei registrieren und anmelden.
 
-# Installation eine Models
+## Installation eine Models
 
 Dieses Projekt beinhaltet keine installierten Modelle. Deshalb müssen diese initial manuell installiert werden. Die Modelle werden persistent unter dem Pfad ./ollama/ollama gespeichert, sodass sie nur ein Mal installiert werden müssen.
 
@@ -180,6 +154,35 @@ Dort muss wie in den Bildern beschrieben ein Model Ollama.com herausgesucht werd
 ![Image 2](./images/install_model/image2.png)
 ![Image 3](./images/install_model/image3.png)
 ![Image 4](./images/install_model/image4.png)
+
+# Einrichtung vom Monitoring
+
+### Verbindung zwischen Grafana und Prometheus herstellen
+
+Prometheus sollte als Datenquelle in Grafana hinzugefügt werden:
+
+1. Zu **Connections** > **Data Sources** navigieren.
+2. **Prometheus** hinzufügen.
+3. Den Link von Prometheus einfügen: `http://prometheus-server`.
+4. Alle anderen Einstellungen auf den Standardwerten belassen.
+
+![Image 1](./images/setup_grafana_dashboards/grafana1.png)
+![Image 2](./images/setup_grafana_dashboards/grafana2.png)
+![Image 3](./images/setup_grafana_dashboards/grafana3.png)
+
+### Dashboard in Grafana einrichten
+
+1. Dashboard über **New Dashboard** erstellen.
+2. **Import Dashboard** wählen.
+3. Dashboard als `.json` importieren (im Projektordner `grafana-dashboards` zu finden).
+
+![Image 1](./images/setup_grafana_dashboards/grafana4.png)
+![Image 2](./images/setup_grafana_dashboards/grafana5.png)
+![Image 3](./images/setup_grafana_dashboards/grafana6.png)
+
+
+
+
 
 
 ## Minikube stoppen
