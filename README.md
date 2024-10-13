@@ -1,5 +1,11 @@
 # Laborarbeit - Self-hosted LLM Chatbot
 
+## Autoren
+
+Nadine Abu El Komboz (CAS-TMINF24-W, 5618268)
+Simon Hoch (CAS-TMINF23-S, 6349017)
+Jonas Dietsche (CAS-WMWI23-W, 3940917)
+
 ## Zielsetzung der Anwendung
 
 Die Zielsetzung dieser Anwendung ist es, ein selbst gehostetes LLM (Large Language
