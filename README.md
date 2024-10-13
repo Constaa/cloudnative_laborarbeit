@@ -36,6 +36,7 @@ Dieses Projekt basiert auf **OpenWebUI** und einer Docker-Implementierung von **
 - Die HPA-Konfiguration basiert auf der **CPU-Auslastung** der Pods und passt die Anzahl der Ollama-Pods dynamisch an.
 - Skalierung erfolgt zwischen **2** und **10 Pods**, um sowohl Redundanz als auch optimale Ressourcennutzung sicherzustellen.
 - Beim Hochskalieren reagiert der HPA sofort, indem er bei Bedarf die Anzahl der Pods um **bis zu 100%** erhöht, während er beim Herunterskalieren vorsichtiger agiert, indem er maximal **50%** der Pods pro Schritt entfernt und dabei eine **60-sekündige Stabilisationsperiode** einhält.
+- Für zukünftige Releases ist eine Optimierung der Grafana/Prometheus Implementierung geplant, da hierbei eine deutliche Zeitverzögerung von tatsächlicher Auslastung vs. Darstellung in den Dashboards besteht.
 - **Prometheus**-Integration erlaubt das Monitoring und kann für dynamische Skalierung konfiguriert werden. Über **Grafana** werden die Daten in Dashboards visualisiert.
 
 ### Single-User-Support
@@ -45,11 +46,7 @@ Dieses Projekt basiert auf **OpenWebUI** und einer Docker-Implementierung von **
 ### Geschwindigkeit
 - Da die Anwendung ohne **GPU-Support** betrieben wird, ist die **Ausführungszeit langsamer** im Vergleich zu GPU-basierten Systemen.
 
-
-
-## Ausblick
-
-Sensibilisieren vom Monitoring - aktuell 3 Minuten Verzögerung.
+# Installation
 
 
 ## Start Minikube ()
