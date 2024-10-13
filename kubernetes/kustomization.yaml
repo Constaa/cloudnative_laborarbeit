@@ -1,10 +1,4 @@
 resources:
-# - namespace/webui.yaml
-# - namespace/prometheus-namespace.yaml
-# - configmap/prometheus-config.yaml
-# - deployment/prometheus-deployment.yaml
-# - service/prometheus-service.yaml
-# - ingress/webui-ingress.yaml
 - pv/ollama-pv.yaml
 - pv/webui-pv.yaml
 - pv/grafana-pv.yaml
@@ -16,7 +10,6 @@ resources:
 - service/ollama-service.yaml
 - service/webui-service.yaml
 - HPA/hpa.yaml
-#- grafana/grafana-dashboards-config.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

@@ -8,7 +8,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    # path: ./ollama/ollama-webui
     path: /c/SBX/cloud/Projekt/ollama/ollama
   claimRef:
      namespace: default

@@ -30,7 +30,5 @@ spec:
       volumes:
       - name: webui-data
         hostPath:
-          # path: ./ollama/ollama-webui
-          # path: /c/SBX/cloud/Projekt/ollama/ollama-webui
         persistentVolumeClaim:
           claimName: webui-pvc
