@@ -2,9 +2,9 @@
 
 ## Autoren
 
-Nadine Abu El Komboz (CAS-TMINF24-W, 5618268)
-Simon Hoch (CAS-TMINF23-S, 6349017)
-Jonas Dietsche (CAS-WMWI23-W, 3940917)
+- Nadine Abu El Komboz (CAS-TMINF24-W, 5618268)
+- Simon Hoch (CAS-TMINF23-S, 6349017)
+- Jonas Dietsche (CAS-WMWI23-W, 3940917)
 
 ## Zielsetzung der Anwendung
 
