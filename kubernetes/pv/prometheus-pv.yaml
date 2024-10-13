@@ -4,7 +4,7 @@ metadata:
   name: prometheus-pv
 spec:
   capacity:
-    storage: 10Gi
+    storage: 9Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
