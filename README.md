@@ -29,9 +29,10 @@ Dieses Projekt basiert auf **OpenWebUI** und einer Docker-Implementierung von **
 ## Features
 
 ### Persistenz
-- **Persistente Datenspeicherung** für die LLMs (Large Language Models) und **Chatverläufe**.
+- **Persistente Datenspeicherung** für die LLMs (Large Language Models) und **Chatverläufe** sowie auch für die **Dashboards** von Grafana
 - Ein Ordner wird lokal automatisch erstellt, um die Integrität der Daten sicherzustellen, auch im Falle eines Node-Ausfalls.
 - Dies garantiert, dass keine Daten verloren gehen und die Anwendung konsistent bleibt.
+- Eine persistente Datenspeicherung der Prometheus Daten ist noch nicht implementiert, ist allerdings für zukünftige Releases in der Pipeline.
 
 ### Load Balancing
 - Kubernetes übernimmt das **automatische Load-Balancing** der Pods.
