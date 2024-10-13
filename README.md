@@ -18,26 +18,33 @@ einem potenziell geringeren Maß an Datensicherheit verbunden ist.
 
 ## Entwurf
 
-Basierend OpenWebUI und Ollama Docker.
-Angepasst, sodass die Anwendung persistent ist auf Kubernetes läuft und load balancing (2 deployments von Ollama)
-Die Anwendung ist für lokale Deployments auf Enduser Geräten konzipiert und unterstützt entsprechend nur eine Single-User Funktionalität.
-Deshalb basiert die Lösung auf einem einzelnen Minikube Node, aber mehreren Pods.
+Dieses Projekt basiert auf **OpenWebUI** und einer Docker-Implementierung von **Ollama**. Es wurde angepasst, um in einer Kubernetes-Umgebung als persistente Anwendung mit Load-Balancing betrieben zu werden. Die Lösung ist für lokale Deployments auf Endnutzergeräten ausgelegt und unterstützt aktuell nur eine **Single-User-Funktionalität**. Sie läuft auf einem einzelnen **Minikube-Node**, nutzt aber mehrere Pods für die Ausführung.
 
-- Persistenz:
-  Das Projekt verfügt über persistente Datenspeicherung für die LLMs sowie auch Chatverläufe etc. (Ordner wird automatisch lokal erstellt).
-  Somit wird auch die Datenintegrität sichergestellt wenn ein Node stirbt.
+## Features
 
-- Load Balancing
-  Load Balancing automatisch durch Kubernetes. NGINX ist externer LB? --> ERgänzung notwendig. Ingress Nginx notwendig da website und Weiterleitung zum Host
+### Persistenz
+- **Persistente Datenspeicherung** für die LLMs (Large Language Models) und **Chatverläufe**.
+- Ein Ordner wird lokal automatisch erstellt, um die Integrität der Daten sicherzustellen, auch im Falle eines Node-Ausfalls.
+- Dies garantiert, dass keine Daten verloren gehen und die Anwendung konsistent bleibt.
 
-- Automatische Skalierung & Monitoring
-  Automatische SKalierung durch Implementierung von Prometheus möglich. Aktuell dynamisch, aber manuell. Wir starten mit 2 Deployments von Ollama um eine schnelle Skalierung zu ermöglichen. Automatische Skalierung (HPA) basiert auf CPU-Auslastung.
+### Load Balancing
+- Kubernetes übernimmt das **automatische Load-Balancing** der Pods.
+- Zur Unterstützung der WebUI und der Weiterleitung von Anfragen zum Host ist ein **NGINX-Ingress-Controller** als externer Load Balancer erforderlich.
 
-- Single User
-  Aktuell Single-User Only, da noch keine Lösung für Multi-WebUI Deployment implementiert wurde. Ist was für die Zukunft.
+### Automatische Skalierung & Monitoring
+- Die Anwendung unterstützt nun eine **automatische Skalierung** mithilfe eines **Horizontal Pod Autoscalers (HPA)**.
+- Die HPA-Konfiguration basiert auf der **CPU-Auslastung** der Pods und passt die Anzahl der Ollama-Pods dynamisch an.
+- Skalierung erfolgt zwischen **2** und **10 Pods**, um sowohl Redundanz als auch optimale Ressourcennutzung sicherzustellen.
+- Beim Hochskalieren reagiert der HPA sofort, indem er bei Bedarf die Anzahl der Pods um **bis zu 100%** erhöht, während er beim Herunterskalieren vorsichtiger agiert, indem er maximal **50%** der Pods pro Schritt entfernt und dabei eine **60-sekündige Stabilisationsperiode** einhält.
+- **Prometheus**-Integration erlaubt das Monitoring und kann für dynamische Skalierung konfiguriert werden. Über **Grafana** werden die Daten in Dashboards visualisiert.
 
-- Geschwindigkeit
-  Ohne GPU-Support, weshalb die Geschwindigkeit entsprechend langsam ist.
+### Single-User-Support
+- Derzeit wird nur **Single-User-Funktionalität** unterstützt, da eine Multi-User-Lösung (mehrere WebUI-Instanzen) noch nicht implementiert wurde.
+- Diese Funktionalität ist für zukünftige Releases geplant.
+
+### Geschwindigkeit
+- Da die Anwendung ohne **GPU-Support** betrieben wird, ist die **Ausführungszeit langsamer** im Vergleich zu GPU-basierten Systemen.
+
 
 
 ## Ausblick
